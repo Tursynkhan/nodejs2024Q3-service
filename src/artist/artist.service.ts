@@ -10,14 +10,12 @@ import { UpdateArtistDto } from '../dto/update-artist.dto';
 import { v4 as uuidv4, validate as isUuid } from 'uuid';
 import { AlbumService } from '../album/album.service';
 import { TrackService } from '../track/track.service';
-import { FavoritesService } from '../favorites/favorites.service';
 
 @Injectable()
 export class ArtistService {
   constructor(
     private readonly albumService: AlbumService,
     private readonly trackService: TrackService,
-    private readonly favoritesService: FavoritesService,
   ) {}
 
   private artists: Artist[] = [];
@@ -73,6 +71,5 @@ export class ArtistService {
     this.artists.splice(artistIndex, 1);
     this.albumService.nullifyArtistId(id);
     this.trackService.nullifyArtistId(id);
-    this.favoritesService.removeArtistId(id);
   }
 }

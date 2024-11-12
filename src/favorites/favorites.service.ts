@@ -6,7 +6,7 @@ import {
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { Favorites } from './favorites.entity';
-import { isUUID } from 'uuid';
+import { validate as isUuid } from 'uuid';
 import { ArtistService } from '../artist/artist.service';
 import { AlbumService } from '../album/album.service';
 import { TrackService } from '../track/track.service';
@@ -36,7 +36,7 @@ export class FavoritesService {
   }
 
   addTrack(id: string) {
-    if (!isUUID(id)) {
+    if (!isUuid(id)) {
       throw new BadRequestException('Invalid UUID');
     }
     try {
@@ -52,7 +52,7 @@ export class FavoritesService {
   }
 
   removeTrack(id: string) {
-    if (!isUUID(id)) {
+    if (!isUuid(id)) {
       throw new BadRequestException('Invalid UUID');
     }
     const index = this.favorites.tracks.indexOf(id);
@@ -63,7 +63,7 @@ export class FavoritesService {
   }
 
   addAlbum(id: string) {
-    if (!isUUID(id)) {
+    if (!isUuid(id)) {
       throw new BadRequestException('Invalid UUID');
     }
     try {
@@ -79,7 +79,7 @@ export class FavoritesService {
   }
 
   removeAlbum(id: string) {
-    if (!isUUID(id)) {
+    if (!isUuid(id)) {
       throw new BadRequestException('Invalid UUID');
     }
     const index = this.favorites.albums.indexOf(id);
@@ -90,7 +90,7 @@ export class FavoritesService {
   }
 
   addArtist(id: string) {
-    if (!isUUID(id)) {
+    if (!isUuid(id)) {
       throw new BadRequestException('Invalid UUID');
     }
     try {
@@ -106,7 +106,7 @@ export class FavoritesService {
   }
 
   removeArtist(id: string) {
-    if (!isUUID(id)) {
+    if (!isUuid(id)) {
       throw new BadRequestException('Invalid UUID');
     }
     const index = this.favorites.artists.indexOf(id);

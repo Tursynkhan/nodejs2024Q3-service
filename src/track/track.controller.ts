@@ -1,8 +1,18 @@
-import { Get, Post, Put, Delete, Param, Body, HttpCode } from '@nestjs/common';
+import {
+  Get,
+  Post,
+  Put,
+  Delete,
+  Param,
+  Body,
+  HttpCode,
+  Controller,
+} from '@nestjs/common';
 import { TrackService } from './track.service';
 import { CreateTrackDto } from '../dto/create-track.dto';
 import { UpdateTrackDto } from '../dto/update-track.dto';
 
+@Controller('track')
 export class TrackController {
   constructor(private readonly trackService: TrackService) {}
 

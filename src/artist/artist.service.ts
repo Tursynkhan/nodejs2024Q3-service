@@ -3,6 +3,8 @@ import {
   Injectable,
   NotFoundException,
   BadRequestException,
+  forwardRef,
+  Inject,
 } from '@nestjs/common';
 import { Artist } from './artist.entity';
 import { CreateArtistDto } from '../dto/create-artist.dto';
@@ -10,12 +12,17 @@ import { UpdateArtistDto } from '../dto/update-artist.dto';
 import { v4 as uuidv4, validate as isUuid } from 'uuid';
 import { AlbumService } from '../album/album.service';
 import { TrackService } from '../track/track.service';
+import { FavoritesService } from 'src/favorites/favorites.service';
 
 @Injectable()
 export class ArtistService {
   constructor(
+    @Inject(forwardRef(() => AlbumService))
     private readonly albumService: AlbumService,
+    @Inject(forwardRef(() => TrackService))
     private readonly trackService: TrackService,
+    @Inject(forwardRef(() => FavoritesService))
+    private readonly favoritesService: FavoritesService,
   ) {}
 
   private artists: Artist[] = [];

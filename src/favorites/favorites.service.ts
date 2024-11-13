@@ -4,6 +4,8 @@ import {
   BadRequestException,
   NotFoundException,
   UnprocessableEntityException,
+  Inject,
+  forwardRef,
 } from '@nestjs/common';
 import { Favorites } from './favorites.entity';
 import { validate as isUuid } from 'uuid';
@@ -20,8 +22,11 @@ export class FavoritesService {
   };
 
   constructor(
+    @Inject(forwardRef(() => ArtistService))
     private readonly artistService: ArtistService,
+    @Inject(forwardRef(() => AlbumService))
     private readonly albumService: AlbumService,
+    @Inject(forwardRef(() => TrackService))
     private readonly trackService: TrackService,
   ) {}
 
